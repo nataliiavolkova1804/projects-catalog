@@ -46,12 +46,35 @@ document.addEventListener('DOMContentLoaded', async () => {
             return matchesSearch && matchesCategory;
         });
         
-        renderProjects(filtered);
+        renderProjects(sortProjects(filtered));
     }
 
     searchInput.addEventListener('input', filterAndRender);
     categoryFilter.addEventListener('change', filterAndRender);
 
+        const sortSelect = document.getElementById('sortSelect');
+
+    function sortProjects(projects) {
+        const sortValue = sortSelect.value;
+        const sorted = [...projects];
+        
+        switch (sortValue) {
+            case 'name-asc':
+                sorted.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+            case 'name-desc':
+                sorted.sort((a, b) => b.name.localeCompare(a.name));
+                break;
+            case 'year-desc':
+                sorted.sort((a, b) => b.year - a.year);
+                break;
+            case 'year-asc':
+                sorted.sort((a, b) => a.year - b.year);
+                break;
+        }
+        
+        return sorted;
+    }
     await loadProjects();
     await filterAndRender();
 });
