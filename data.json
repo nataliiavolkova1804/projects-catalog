@@ -48,5 +48,155 @@
     "client": "TechSupport Inc",
     "status": "Завершён",
     "year": 2025
+  },
+  {
+    "id": 6,
+    "name": "Интернет-магазин электроники",
+    "category": "Веб-разработка",
+    "description": "Полнофункциональный магазин с корзиной и оплатой",
+    "stack": ["Next.js", "Stripe", "Prisma"],
+    "client": "ElectroShop",
+    "status": "В разработке",
+    "year": 2026
+  },
+  {
+    "id": 7,
+    "name": "Система управления складом",
+    "category": "Desktop",
+    "description": "Приложение для учёта товаров и инвентаризации",
+    "stack": ["C#", ".NET", "SQL Server"],
+    "client": "LogisticsPro",
+    "status": "Завершён",
+    "year": 2024
+  },
+  {
+    "id": 8,
+    "name": "Платформа онлайн-обучения",
+    "category": "Веб-разработка",
+    "description": "LMS система с видеокурсами и тестированием",
+    "stack": ["Angular", "Node.js", "MongoDB"],
+    "client": "EduTech",
+    "status": "Завершён",
+    "year": 2025
+  },
+  {
+    "id": 9,
+    "name": "Приложение для фитнеса",
+    "category": "Мобильная разработка",
+    "description": "Трекер тренировок и питания с персональными рекомендациями",
+    "stack": ["Flutter", "Firebase", "Dart"],
+    "client": "FitLife",
+    "status": "В разработке",
+    "year": 2026
+  },
+  {
+    "id": 10,
+    "name": "Система распознавания лиц",
+    "category": "AI/ML",
+    "description": "Модель машинного обучения для биометрической аутентификации",
+    "stack": ["Python", "TensorFlow", "OpenCV"],
+    "client": "SecureTech",
+    "status": "Исследование",
+    "year": 2026
+  },
+  {
+    "id": 11,
+    "name": "Блог-платформа",
+    "category": "Веб-разработка",
+    "description": "Система публикации статей с редактором Markdown",
+    "stack": ["Gatsby", "GraphQL", "Contentful"],
+    "client": "MediaGroup",
+    "status": "Завершён",
+    "year": 2025
+  },
+  {
+    "id": 12,
+    "name": "Система бронирования отелей",
+    "category": "Веб-разработка",
+    "description": "Платформа для поиска и бронирования жилья",
+    "stack": ["React", "Express", "PostgreSQL"],
+    "client": "TravelBook",
+    "status": "Завершён",
+    "year": 2024
+  },
+  {
+    "id": 13,
+    "name": "IoT платформа для умного дома",
+    "category": "IoT",
+    "description": "Система управления умными устройствами через веб-интерфейс",
+    "stack": ["Node.js", "MQTT", "React", "InfluxDB"],
+    "client": "SmartHome Co",
+    "status": "В разработке",
+    "year": 2026
+  },
+  {
+    "id": 14,
+    "name": "Финансовый дашборд",
+    "category": "Data Science",
+    "description": "Визуализация финансовых показателей компании",
+    "stack": ["Vue.js", "D3.js", "Python", "FastAPI"],
+    "client": "FinanceHub",
+    "status": "Завершён",
+    "year": 2025
+  },
+  {
+    "id": 15,
+    "name": "Сервис видеоконференций",
+    "category": "Веб-разработка",
+    "description": "Платформа для онлайн-встреч с демонстрацией экрана",
+    "stack": ["WebRTC", "Socket.io", "React"],
+    "client": "MeetOnline",
+    "status": "В разработке",
+    "year": 2026
+  },
+  {
+    "id": 16,
+    "name": "Игра 'Космические приключения'",
+    "category": "GameDev",
+    "description": "2D аркада с системой уровней и таблицей рекордов",
+    "stack": ["Unity", "C#", "Photon"],
+    "client": "GameStudio",
+    "status": "Завершён",
+    "year": 2025
+  },
+  {
+    "id": 17,
+    "name": "Система управления задачами",
+    "category": "Веб-разработка",
+    "description": "Task-менеджер с канбан-досками и календарём",
+    "stack": ["React", "TypeScript", "Firebase"],
+    "client": "ProductivityPro",
+    "status": "Завершён",
+    "year": 2025
+  },
+  {
+    "id": 18,
+    "name": "Медицинская информационная система",
+    "category": "Веб-разработка",
+    "description": "Электронная карта пациента с расписанием приёма",
+    "stack": ["Angular", "Java", "Spring", "Oracle"],
+    "client": "MedCare",
+    "status": "В разработке",
+    "year": 2026
+  },
+  {
+    "id": 19,
+    "name": "Приложение для изучения языков",
+    "category": "Мобильная разработка",
+    "description": "Интерактивные уроки с распознаванием речи",
+    "stack": ["React Native", "AI", "Speech API"],
+    "client": "LangLearn",
+    "status": "Исследование",
+    "year": 2026
+  },
+  {
+    "id": 20,
+    "name": "Система контроля версий",
+    "category": "DevTools",
+    "description": "Упрощённый аналог Git для небольших команд",
+    "stack": ["Go", "PostgreSQL", "React"],
+    "client": "Внутренний проект",
+    "status": "Исследование",
+    "year": 2026
   }
 ]
