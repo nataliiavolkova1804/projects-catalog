@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const projectsContainer = document.getElementById('projectsContainer');
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
     let allProjects = [];
 
     async function loadProjects() {
         try {
             const response = await fetch('data.json');
             allProjects = await response.json();
-            renderProjects(allProjects);
         } catch (error) {
             console.error('Ошибка загрузки:', error);
         }
@@ -34,17 +35,23 @@ document.addEventListener('DOMContentLoaded', async () => {
             projectsContainer.appendChild(card);
         });
     }
-        const searchInput = document.getElementById('searchInput');
-    
+
     function filterAndRender() {
         const term = searchInput.value.toLowerCase();
-        const filtered = allProjects.filter(project => 
-            project.name.toLowerCase().includes(term)
-        );
+        const category = categoryFilter.value;
+        
+        const filtered = allProjects.filter(project => {
+            const matchesSearch = project.name.toLowerCase().includes(term);
+            const matchesCategory = !category || project.category === category;
+            return matchesSearch && matchesCategory;
+        });
+        
         renderProjects(filtered);
     }
 
     searchInput.addEventListener('input', filterAndRender);
+    categoryFilter.addEventListener('change', filterAndRender);
 
+    await loadProjects();
     await filterAndRender();
 });
