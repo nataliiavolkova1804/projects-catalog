@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const projectsContainer = document.getElementById('projectsContainer');
     const searchInput = document.getElementById('searchInput');
     const categoryFilter = document.getElementById('categoryFilter');
+    const sortSelect = document.getElementById('sortSelect');
+    const resultsCount = document.getElementById('resultsCount');
     let allProjects = [];
 
     async function loadProjects() {
@@ -36,24 +38,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    function filterAndRender() {
-        const term = searchInput.value.toLowerCase();
-        const category = categoryFilter.value;
-        
-        const filtered = allProjects.filter(project => {
-            const matchesSearch = project.name.toLowerCase().includes(term);
-            const matchesCategory = !category || project.category === category;
-            return matchesSearch && matchesCategory;
-        });
-        
-        renderProjects(sortProjects(filtered));
-    }
-
-    searchInput.addEventListener('input', filterAndRender);
-    categoryFilter.addEventListener('change', filterAndRender);
-
-        const sortSelect = document.getElementById('sortSelect');
-
     function sortProjects(projects) {
         const sortValue = sortSelect.value;
         const sorted = [...projects];
@@ -75,6 +59,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         return sorted;
     }
+
+    function filterAndRender() {
+        const term = searchInput.value.toLowerCase();
+        const category = categoryFilter.value;
+        
+        const filtered = allProjects.filter(project => {
+            const matchesSearch = project.name.toLowerCase().includes(term);
+            const matchesCategory = !category || project.category === category;
+            return matchesSearch && matchesCategory;
+        });
+        
+        resultsCount.textContent = filtered.length;
+        renderProjects(sortProjects(filtered));
+    }
+
+    searchInput.addEventListener('input', filterAndRender);
+    categoryFilter.addEventListener('change', filterAndRender);
+    sortSelect.addEventListener('change', filterAndRender);
+
     await loadProjects();
     await filterAndRender();
 });

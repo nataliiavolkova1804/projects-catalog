@@ -17,10 +17,20 @@
             <select id="categoryFilter">
                 <option value="">Все категории</option>
             </select>
+            <select id="sortSelect">
+                <option value="name-asc">По имени (А-Я)</option>
+                <option value="name-desc">По имени (Я-А)</option>
+                <option value="year-desc">Сначала новые</option>
+                <option value="year-asc">Сначала старые</option>
+            </select>
         </section>
         
+        <div class="results-info" id="resultsInfo">
+            Найдено проектов: <span id="resultsCount">0</span>
+        </div>
+        
         <section class="projects-grid" id="projectsContainer">
-            <!-- Карточки появятся здесь -->
+            <!-- Карточки проектов будут здесь -->
         </section>
     </main>
     
