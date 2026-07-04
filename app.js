@@ -34,6 +34,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             projectsContainer.appendChild(card);
         });
     }
+        const searchInput = document.getElementById('searchInput');
+    
+    function filterAndRender() {
+        const term = searchInput.value.toLowerCase();
+        const filtered = allProjects.filter(project => 
+            project.name.toLowerCase().includes(term)
+        );
+        renderProjects(filtered);
+    }
 
-    await loadProjects();
+    searchInput.addEventListener('input', filterAndRender);
+
+    await filterAndRender();
 });
