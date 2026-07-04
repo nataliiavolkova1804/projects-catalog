@@ -1,1 +1,52 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "Корпоративный портал",
+    "category": "Веб-разработка",
+    "description": "Разработка внутреннего портала компании для управления документами и задачами",
+    "stack": ["React", "Node.js", "MongoDB"],
+    "client": "Внутренний проект",
+    "status": "Завершён",
+    "year": 2025
+  },
+  {
+    "id": 2,
+    "name": "Мобильное приложение для доставки",
+    "category": "Мобильная разработка",
+    "description": "Приложение для заказа и доставки еды с системой отслеживания",
+    "stack": ["React Native", "Firebase", "Redux"],
+    "client": "FoodDelivery LLC",
+    "status": "В разработке",
+    "year": 2026
+  },
+  {
+    "id": 3,
+    "name": "Система аналитики продаж",
+    "category": "Data Science",
+    "description": "Платформа для анализа продаж и прогнозирования спроса",
+    "stack": ["Python", "Django", "PostgreSQL", "D3.js"],
+    "client": "RetailCorp",
+    "status": "Завершён",
+    "year": 2025
+  },
+  {
+    "id": 4,
+    "name": "CRM система",
+    "category": "Веб-разработка",
+    "description": "Система управления взаимоотношениями с клиентами",
+    "stack": ["Vue.js", "Laravel", "MySQL"],
+    "client": "SalesPro",
+    "status": "Завершён",
+    "year": 2024
+  },
+  {
+    "id": 5,
+    "name": "Чат-бот для Telegram",
+    "category": "AI/ML",
+    "description": "Интеллектуальный бот для автоматизации поддержки клиентов",
+    "stack": ["Python", "AI", "NLP", "Telegram API"],
+    "client": "TechSupport Inc",
+    "status": "Завершён",
+    "year": 2025
+  }
+]
