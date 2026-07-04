@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог проектов компании</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Каталог проектов компании</h1>
+    </header>
+    
+    <main>
+        <section class="search-section">
+    <input type="text" placeholder="Поиск проектов..." id="searchInput">
+    <select id="categoryFilter">
+        <option value="">Все категории</option>
+    </select>
+    <select id="sortSelect">
+        <option value="name-asc">По имени (А-Я)</option>
+        <option value="name-desc">По имени (Я-А)</option>
+        <option value="year-desc">Сначала новые</option>
+        <option value="year-asc">Сначала старые</option>
+    </select>
+</section>
+
+<div class="results-info" id="resultsInfo">
+    Найдено проектов: <span id="resultsCount">0</span>
+</div>
+
+<section class="projects-grid" id="projectsContainer">
+    <!-- Карточки проектов будут здесь -->
+</section>
+
+<!-- Модальное окно -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <div id="modalContent"></div>
+    </div>
+</div>
+        
+
+    </main>
+    
+    <script src="app.js"></script>
+</body>
+</html>
