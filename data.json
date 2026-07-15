@@ -7,7 +7,8 @@
     "stack": ["React", "Node.js", "MongoDB"],
     "client": "Внутренний проект",
     "status": "Завершён",
-    "year": 2025
+    "year": 2025,
+    "image": "images/portal.jpg"
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
     "stack": ["React Native", "Firebase", "Redux"],
     "client": "FoodDelivery LLC",
     "status": "В разработке",
-    "year": 2026
+    "year": 2026,
+    "image": "images/delivery.jpg"
   },
   {
     "id": 3,
@@ -27,7 +29,8 @@
     "stack": ["Python", "Django", "PostgreSQL", "D3.js"],
     "client": "RetailCorp",
     "status": "Завершён",
-    "year": 2025
+    "year": 2025,
+    "image": "images/analytics.jpg"
   },
   {
     "id": 4,
@@ -37,7 +40,8 @@
     "stack": ["Vue.js", "Laravel", "MySQL"],
     "client": "SalesPro",
     "status": "Завершён",
-    "year": 2024
+    "year": 2024,
+    "image": "images/crm.jpg"
   },
   {
     "id": 5,
@@ -47,7 +51,8 @@
     "stack": ["Python", "AI", "NLP", "Telegram API"],
     "client": "TechSupport Inc",
     "status": "Завершён",
-    "year": 2025
+    "year": 2025,
+    "image": "images/chatbot.jpg"
   },
   {
     "id": 6,
@@ -57,7 +62,8 @@
     "stack": ["Next.js", "Stripe", "Prisma"],
     "client": "ElectroShop",
     "status": "В разработке",
-    "year": 2026
+    "year": 2026,
+    "image": "images/ecommerce.jpg"
   },
   {
     "id": 7,
@@ -67,7 +73,8 @@
     "stack": ["C#", ".NET", "SQL Server"],
     "client": "LogisticsPro",
     "status": "Завершён",
-    "year": 2024
+    "year": 2024,
+    "image": "images/warehouse.jpg"
   },
   {
     "id": 8,
@@ -77,7 +84,8 @@
     "stack": ["Angular", "Node.js", "MongoDB"],
     "client": "EduTech",
     "status": "Завершён",
-    "year": 2025
+    "year": 2025,
+    "image": "images/lms.jpg"
   },
   {
     "id": 9,
@@ -87,7 +95,8 @@
     "stack": ["Flutter", "Firebase", "Dart"],
     "client": "FitLife",
     "status": "В разработке",
-    "year": 2026
+    "year": 2026,
+    "image": "images/fitness.jpg"
   },
   {
     "id": 10,
@@ -97,7 +106,8 @@
     "stack": ["Python", "TensorFlow", "OpenCV"],
     "client": "SecureTech",
     "status": "Исследование",
-    "year": 2026
+    "year": 2026,
+    "image": "images/face-recognition.jpg"
   },
   {
     "id": 11,
@@ -107,7 +117,8 @@
     "stack": ["Gatsby", "GraphQL", "Contentful"],
     "client": "MediaGroup",
     "status": "Завершён",
-    "year": 2025
+    "year": 2025,
+    "image": "images/blog.jpg"
   },
   {
     "id": 12,
@@ -117,7 +128,8 @@
     "stack": ["React", "Express", "PostgreSQL"],
     "client": "TravelBook",
     "status": "Завершён",
-    "year": 2024
+    "year": 2024,
+    "image": "images/hotels.jpg"
   },
   {
     "id": 13,
@@ -127,7 +139,8 @@
     "stack": ["Node.js", "MQTT", "React", "InfluxDB"],
     "client": "SmartHome Co",
     "status": "В разработке",
-    "year": 2026
+    "year": 2026,
+    "image": "images/iot.jpg"
   },
   {
     "id": 14,
@@ -137,7 +150,8 @@
     "stack": ["Vue.js", "D3.js", "Python", "FastAPI"],
     "client": "FinanceHub",
     "status": "Завершён",
-    "year": 2025
+    "year": 2025,
+    "image": "images/finance.jpg"
   },
   {
     "id": 15,
@@ -147,7 +161,8 @@
     "stack": ["WebRTC", "Socket.io", "React"],
     "client": "MeetOnline",
     "status": "В разработке",
-    "year": 2026
+    "year": 2026,
+    "image": "images/video-call.jpg"
   },
   {
     "id": 16,
@@ -157,7 +172,8 @@
     "stack": ["Unity", "C#", "Photon"],
     "client": "GameStudio",
     "status": "Завершён",
-    "year": 2025
+    "year": 2025,
+    "image": "images/game.jpg"
   },
   {
     "id": 17,
@@ -167,7 +183,8 @@
     "stack": ["React", "TypeScript", "Firebase"],
     "client": "ProductivityPro",
     "status": "Завершён",
-    "year": 2025
+    "year": 2025,
+    "image": "images/tasks.jpg"
   },
   {
     "id": 18,
@@ -177,7 +194,8 @@
     "stack": ["Angular", "Java", "Spring", "Oracle"],
     "client": "MedCare",
     "status": "В разработке",
-    "year": 2026
+    "year": 2026,
+    "image": "images/medical.jpg"
   },
   {
     "id": 19,
@@ -187,7 +205,8 @@
     "stack": ["React Native", "AI", "Speech API"],
     "client": "LangLearn",
     "status": "Исследование",
-    "year": 2026
+    "year": 2026,
+    "image": "images/language.jpg"
   },
   {
     "id": 20,
@@ -197,6 +216,7 @@
     "stack": ["Go", "PostgreSQL", "React"],
     "client": "Внутренний проект",
     "status": "Исследование",
-    "year": 2026
+    "year": 2026,
+    "image": "images/git-lite.jpg"
   }
 ]
