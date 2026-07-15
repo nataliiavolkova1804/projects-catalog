@@ -13,41 +13,36 @@
     
     <main>
         <section class="search-section">
-            <input type="text" placeholder="Поиск проектов..." id="searchInput">
-            <select id="categoryFilter">
-                <option value="">Все категории</option>
-            </select>
-            <select id="sortSelect">
-                <option value="name-asc">По имени (А-Я)</option>
-                <option value="name-desc">По имени (Я-А)</option>
-                <option value="year-desc">Сначала новые</option>
-                <option value="year-asc">Сначала старые</option>
-            </select>
-        </section>
-        
-        <div class="results-info" id="resultsInfo">
-            Найдено проектов: <span id="resultsCount">0</span>
-        </div>
-        
-        <section class="projects-grid" id="projectsContainer">
-            <!-- Карточки проектов будут здесь -->
-        </section>
-    </main>
+    <input type="text" placeholder="Поиск проектов..." id="searchInput">
+    <select id="categoryFilter">
+        <option value="">Все категории</option>
+    </select>
+    <select id="sortSelect">
+        <option value="name-asc">По имени (А-Я)</option>
+        <option value="name-desc">По имени (Я-А)</option>
+        <option value="year-desc">Сначала новые</option>
+        <option value="year-asc">Сначала старые</option>
+    </select>
+</section>
 
-        <!-- Модальное окно -->
-    <div class="modal" id="projectModal">
-        <div class="modal-content">
-            <span class="modal-close" id="modalClose">&times;</span>
-            <h2 id="modalTitle"></h2>
-            <p id="modalDescription"></p>
-            <div class="modal-details">
-                <p><strong>Клиент:</strong> <span id="modalClient"></span></p>
-                <p><strong>Год:</strong> <span id="modalYear"></span></p>
-                <p><strong>Статус:</strong> <span id="modalStatus"></span></p>
-                <p><strong>Стек технологий:</strong> <span id="modalStack"></span></p>
-            </div>
-        </div>
+<div class="results-info" id="resultsInfo">
+    Найдено проектов: <span id="resultsCount">0</span>
+</div>
+
+<section class="projects-grid" id="projectsContainer">
+    <!-- Карточки проектов будут здесь -->
+</section>
+
+<!-- Модальное окно -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <div id="modalContent"></div>
     </div>
+</div>
+        
+
+    </main>
     
     <script src="app.js"></script>
 </body>

@@ -1,95 +1,45 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    // 1. Получаем элементы со страницы
+    
     const projectsContainer = document.getElementById('projectsContainer');
     const searchInput = document.getElementById('searchInput');
     const categoryFilter = document.getElementById('categoryFilter');
     const sortSelect = document.getElementById('sortSelect');
     const resultsCount = document.getElementById('resultsCount');
-    
-    // Элементы модального окна
-    const modal = document.getElementById('projectModal');
+    const modalOverlay = document.getElementById('modalOverlay');
     const modalClose = document.getElementById('modalClose');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDescription = document.getElementById('modalDescription');
-    const modalClient = document.getElementById('modalClient');
-    const modalYear = document.getElementById('modalYear');
-    const modalStatus = document.getElementById('modalStatus');
-    const modalStack = document.getElementById('modalStack');
+    const modalContent = document.getElementById('modalContent');
 
     let allProjects = [];
 
-    // 2. Функция загрузки данных из JSON
+    // Загрузка данных
     async function loadProjects() {
         try {
             const response = await fetch('data.json');
             allProjects = await response.json();
+            populateCategories();
+            filterAndRender();
         } catch (error) {
             console.error('Ошибка загрузки данных:', error);
+            projectsContainer.innerHTML = '<p style="color: white; text-align: center; grid-column: 1/-1;">Не удалось загрузить данные</p>';
         }
     }
 
-    // 3. Функция отрисовки карточек (теперь с картинками!)
-    function renderProjects(projects) {
-        projectsContainer.innerHTML = ''; // Очищаем контейнер
-        
-        projects.forEach(project => {
-            const card = document.createElement('div');
-            card.className = 'project-card';
-            card.style.cursor = 'pointer'; // Показываем, что можно кликнуть
-            
-            // Вставляем HTML карточки, включая картинку
-            card.innerHTML = `
-                <img src="${project.image}" alt="${project.name}" class="project-image">
-                <h3>${project.name}</h3>
-                <p>${project.description}</p>
-                <div>
-                    <span>${project.category}</span>
-                    <span>${project.status}</span>
-                </div>
-                <div>
-                    <strong>Клиент:</strong> ${project.client} | <strong>Год:</strong> ${project.year}
-                </div>
-                <div>
-                    <strong>Стек:</strong> ${project.stack.join(', ')}
-                </div>
-            `;
-            
-            // При клике на карточку открываем модальное окно
-            card.addEventListener('click', () => openModal(project));
-            
-            projectsContainer.appendChild(card);
+    // Заполнение категорий
+    function populateCategories() {
+        const categories = [...new Set(allProjects.map(project => project.category))];
+        categoryFilter.innerHTML = '<option value="">Все категории</option>';
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category;
+            option.textContent = category;
+            categoryFilter.appendChild(option);
         });
     }
 
-    // 4. Функции для модального окна
-    function openModal(project) {
-        modalTitle.textContent = project.name;
-        modalDescription.textContent = project.description;
-        modalClient.textContent = project.client;
-        modalYear.textContent = project.year;
-        modalStatus.textContent = project.status;
-        modalStack.textContent = project.stack.join(', ');
-        modal.style.display = 'flex';
-    }
-
-    function closeModal() {
-        modal.style.display = 'none';
-    }
-
-    // Закрытие по крестику
-    modalClose.addEventListener('click', closeModal);
-    
-    // Закрытие по клику на затемнённый фон
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-
-    // 5. Функция сортировки
+    // Сортировка
     function sortProjects(projects) {
         const sortValue = sortSelect.value;
-        const sorted = [...projects]; // Создаём копию массива, чтобы не мутировать оригинал
+        const sorted = [...projects];
         
         switch (sortValue) {
             case 'name-asc':
@@ -109,40 +59,121 @@ document.addEventListener('DOMContentLoaded', async () => {
         return sorted;
     }
 
-    // 6. Главная функция: фильтрация + сортировка + отрисовка
+    // Фильтрация и отображение
     function filterAndRender() {
-        const term = searchInput.value.toLowerCase();
-        const category = categoryFilter.value;
-        
-        const filtered = allProjects.filter(project => {
-            const matchesSearch = project.name.toLowerCase().includes(term);
-            const matchesCategory = !category || project.category === category;
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedCategory = categoryFilter.value;
+
+        let filtered = allProjects.filter(project => {
+            const matchesSearch = project.name.toLowerCase().includes(searchTerm) || 
+                                  project.description.toLowerCase().includes(searchTerm) ||
+                                  project.stack.some(tech => tech.toLowerCase().includes(searchTerm));
+            const matchesCategory = !selectedCategory || project.category === selectedCategory;
             return matchesSearch && matchesCategory;
         });
-        
+
+        // Сортируем отфильтрованные
+        filtered = sortProjects(filtered);
+
         // Обновляем счётчик
         resultsCount.textContent = filtered.length;
-        
-        // Сортируем и отрисовываем
-        renderProjects(sortProjects(filtered));
+
+        renderProjects(filtered);
     }
 
-    // 7. Вешаем слушатели событий на поля ввода
+    // Отображение карточек
+    function renderProjects(projects) {
+        projectsContainer.innerHTML = '';
+
+        if (projects.length === 0) {
+            projectsContainer.innerHTML = '<p style="color: white; text-align: center; grid-column: 1/-1; font-size: 1.2rem;">😕 Ничего не найдено. Попробуйте изменить запрос.</p>';
+            return;
+        }
+
+        projects.forEach(project => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            
+            card.innerHTML = `
+                <img src="${project.image}" alt="${project.name}" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+                <h3>${project.name}</h3>
+                <p style="color: #666; margin: 10px 0;">${project.description}</p>
+                <div style="margin-top: 15px;">
+                    <span style="background: #667eea; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.9rem;">
+                        ${project.category}
+                    </span>
+                    <span style="background: #764ba2; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.9rem; margin-left: 10px;">
+                        ${project.status}
+                    </span>
+                </div>
+                <div style="margin-top: 15px; color: #888; font-size: 0.9rem;">
+                    <strong>Клиент:</strong> ${project.client} | <strong>Год:</strong> ${project.year}
+                </div>
+                <div style="margin-top: 10px;">
+                    <strong>Стек:</strong> ${project.stack.join(', ')}
+                </div>
+            `;
+            
+            // Клик по карточке открывает модалку
+            card.addEventListener('click', () => openModal(project));
+            
+            projectsContainer.appendChild(card);
+        });
+    }
+
+    // Открытие модального окна
+    function openModal(project) {
+        modalContent.innerHTML = `
+            <img src="${project.image}" alt="${project.name}">
+            <h2>${project.name}</h2>
+            <div class="detail-row">
+                <span class="detail-label">Описание:</span>
+                <p>${project.description}</p>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Категория:</span>
+                <span style="background: #667eea; color: white; padding: 5px 10px; border-radius: 5px;">${project.category}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Статус:</span>
+                <span style="background: #764ba2; color: white; padding: 5px 10px; border-radius: 5px;">${project.status}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Клиент:</span>
+                ${project.client}
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Год:</span>
+                ${project.year}
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Стек технологий:</span>
+                <div class="stack-tags">
+                    ${project.stack.map(tech => `<span class="stack-tag">${tech}</span>`).join('')}
+                </div>
+            </div>
+        `;
+        modalOverlay.classList.add('active');
+    }
+
+    // Закрытие модального окна
+    function closeModal() {
+        modalOverlay.classList.remove('active');
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
+
+    // Обработчики событий
     searchInput.addEventListener('input', filterAndRender);
     categoryFilter.addEventListener('change', filterAndRender);
     sortSelect.addEventListener('change', filterAndRender);
 
-    // 8. Запускаем при загрузке страницы
+    // Загрузка
     await loadProjects();
-    
-    // Заполняем выпадающий список категорий уникальными значениями из данных
-    const categories = [...new Set(allProjects.map(p => p.category))];
-    categories.forEach(cat => {
-        const option = document.createElement('option');
-        option.value = cat;
-        option.textContent = cat;
-        categoryFilter.appendChild(option);
-    });
-
-    await filterAndRender();
 });

@@ -1,23 +1,30 @@
+/* Базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     padding: 20px;
-    margin: 0;
 }
 
+/* Шапка */
 header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 header h1 {
     color: white;
     font-size: 2.5rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    margin-bottom: 40px;
 }
 
+/* Секция поиска */
 .search-section {
     background: white;
     padding: 20px;
@@ -26,10 +33,12 @@ header h1 {
     margin-bottom: 30px;
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .search-section input {
     flex: 1;
+    min-width: 200px;
     padding: 12px 15px;
     border: 2px solid #e0e0e0;
     border-radius: 8px;
@@ -41,35 +50,32 @@ header h1 {
     border: 2px solid #e0e0e0;
     border-radius: 8px;
     font-size: 1rem;
+    background: white;
+    cursor: pointer;
 }
 
+/* Сетка проектов */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 }
 
+/* Карточка проекта (пока пустая) */
 .project-card {
     background: white;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.project-card h3 {
-    color: #333;
-    margin-bottom: 10px;
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
 }
 
-.project-card span {
-    background: #667eea;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    margin-right: 10px;
-}
-
+/* Счётчик результатов */
 .results-info {
     color: white;
     text-align: center;
@@ -85,8 +91,18 @@ header h1 {
     font-weight: bold;
 }
 
+/* Селект сортировки */
+.search-section select {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+}
+
 /* Модальное окно */
-.modal {
+.modal-overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -97,43 +113,91 @@ header h1 {
     z-index: 1000;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
-.modal-content {
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
     background: white;
+    border-radius: 15px;
     padding: 30px;
-    border-radius: 12px;
-    max-width: 500px;
-    width: 90%;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
     position: relative;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .modal-close {
     position: absolute;
     top: 15px;
     right: 20px;
+    background: none;
+    border: none;
     font-size: 2rem;
     cursor: pointer;
     color: #666;
+    line-height: 1;
 }
 
 .modal-close:hover {
     color: #333;
 }
 
-.modal-details p {
-    margin: 10px 0;
-    font-size: 1.1rem;
+.modal h2 {
+    margin-top: 0;
+    color: #333;
+    margin-bottom: 15px;
 }
 
-/* Стили для картинки в карточке */
-.project-image {
+.modal img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.modal .detail-row {
     margin-bottom: 15px;
+}
+
+.modal .detail-label {
+    font-weight: bold;
+    color: #667eea;
+    margin-right: 10px;
+}
+
+.modal .stack-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.modal .stack-tag {
+    background: #f0f0f0;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+/* Карточка теперь кликабельная */
+.project-card {
+    cursor: pointer;
 }
 
 /* ===================================
@@ -144,30 +208,157 @@ header h1 {
 @media (max-width: 1024px) {
     .projects-grid {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .search-section {
+        padding: 15px;
     }
 }
 
 /* Планшеты и большие телефоны (до 768px) */
 @media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    /* Поиск и фильтры в колонку */
     .search-section {
         flex-direction: column;
+        gap: 10px;
     }
+    
     .search-section input,
     .search-section select {
         width: 100%;
     }
+    
+    /* Счётчик результатов */
+    .results-info {
+        font-size: 1rem;
+        text-align: center;
+    }
+    
+    /* Карточки в одну колонку */
     .projects-grid {
-        grid-template-columns: 1fr; /* Одна колонка */
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Модальное окно на всю ширину */
+    .modal {
+        padding: 20px;
+        margin: 10px;
+        max-width: 100%;
     }
 }
 
 /* Маленькие телефоны (до 480px) */
 @media (max-width: 480px) {
-    header h1 {
-        font-size: 1.5rem;
+    body {
+        padding: 5px;
     }
-    .modal-content {
-        width: 95%;
-        padding: 20px;
+    
+    header h1 {
+        font-size: 1.2rem;
+    }
+    
+    .search-section {
+        padding: 10px;
+    }
+    
+    .search-section input,
+    .search-section select {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    /* Карточки */
+    .project-card {
+        padding: 15px;
+    }
+    
+    .project-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .project-card p {
+        font-size: 0.9rem;
+    }
+    
+    /* Теги меньше */
+    .project-card span {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+    
+    /* Placeholder для картинки */
+    .project-image-placeholder {
+        height: 150px;
+        font-size: 3rem;
+    }
+    
+    /* Модальное окно */
+    .modal {
+        padding: 15px;
+    }
+    
+    .modal h2 {
+        font-size: 1.3rem;
+    }
+    
+    .modal-close {
+        font-size: 1.5rem;
+        top: 10px;
+        right: 15px;
+    }
+}
+
+/* Очень маленькие экраны (до 360px) */
+@media (max-width: 360px) {
+    header h1 {
+        font-size: 1rem;
+    }
+    
+    .search-section input,
+    .search-section select {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+    
+    .project-card {
+        padding: 10px;
+    }
+    
+    .project-card h3 {
+        font-size: 1rem;
+    }
+    
+    .project-image-placeholder {
+        height: 120px;
+        font-size: 2.5rem;
+    }
+}
+
+/* Большие экраны (от 1920px) */
+@media (min-width: 1920px) {
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 30px;
+        max-width: 1800px;
+        margin: 0 auto;
+    }
+    
+    header h1 {
+        font-size: 3rem;
     }
 }
