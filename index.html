@@ -33,6 +33,21 @@
             <!-- Карточки проектов будут здесь -->
         </section>
     </main>
+
+        <!-- Модальное окно -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+            <div class="modal-details">
+                <p><strong>Клиент:</strong> <span id="modalClient"></span></p>
+                <p><strong>Год:</strong> <span id="modalYear"></span></p>
+                <p><strong>Статус:</strong> <span id="modalStatus"></span></p>
+                <p><strong>Стек технологий:</strong> <span id="modalStack"></span></p>
+            </div>
+        </div>
+    </div>
     
     <script src="app.js"></script>
 </body>
